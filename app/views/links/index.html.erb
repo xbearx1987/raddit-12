@@ -1,31 +1,16 @@
-
 <div class="col-md-12">
   <div class="group text-right">
     <%= link_to("New Link", new_link_path() , class: "btn btn-sm btn-default")%>
   </div>
 
   <div class="col-md-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th> Title </th>
-          <th> Link </th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @links.each do |link| %>
-          <tr>
-            <td> <%= link_to(link.title ,link_path(link)) %> </td>
-            <td> <%= link.url %> </td>
-            <% if link.user == current_user %>
-            <td> <%= link_to('Edit', edit_link_path(link), class: "btn btn-default btn-xs") %></td>
-            <td> <%= link_to('Delete', link_path(link), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @links.each do |link| %>
+    <h3><%= link_to(link.title ,link_path(link)) %> </h3>
+    <p>
+      Post by <b><%= link.user.email %></b>
+    </p>
+    <hr />
+    <% end %>
   </div>
 
 </div>

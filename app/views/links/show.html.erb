@@ -1,0 +1,14 @@
+<div class="col-md-12">
+  <div class="col-md-12">
+        <h3><%= link_to(@link.title ,@link.url) %> </h3>
+        <p>
+          Post by <b><%= @link.user.email %></b>
+        </p>
+        <hr />
+        <%= link_to("Visit Url", @link.url , class: "btn btn-md btn-primary")%>
+        <% if @link.user == current_user %>
+        <%= link_to("Edit", edit_link_path(@link) , class: "btn btn-md btn-default")%>
+        <%= link_to("Delete", link_path(@link), method: :delete, data: { confirm: "Are you sure?" } , class: "btn btn-md btn-default")%>
+        <% end %>
+  </div>
+</div>
