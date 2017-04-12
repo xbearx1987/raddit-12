@@ -9,6 +9,17 @@
     <p>
       Post by <b><%= link.user.email %></b>
     </p>
+    <%= link_to("Visit Url", link.url , class: "btn btn-md btn-default")%>
+    <%= link_to upvote_link_path(link), method: :post, class: "btn btn-default btn-md-default" do %>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        Upvote
+        <%= link.get_upvotes.size %>
+    <% end %>
+    <%= link_to downvote_link_path(link), method: :post, class: "btn btn-default btn-md-default" do %>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        Downvote
+        <%= link.get_upvotes.size %>
+    <% end %>
     <hr />
     <% end %>
   </div>
