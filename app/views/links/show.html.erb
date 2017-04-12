@@ -1,12 +1,12 @@
 <div class="col-md-12">
   <div class="col-md-12">
-        <h3><%= link_to(@link.title ,@link.url) %> </h3>
+        <h3><%= link_to(@link.title ,@link.url, :target=> "_blank") %> </h3>
         <p>
           Post by <b><%= @link.user.email %></b>
         </p>
         <hr />
     <div class="btn-group">
-        <%= link_to("Visit Url", @link.url , class: "btn btn-md btn-primary")%>
+        <%= link_to("Visit Url", @link.url , :target=> "_blank" , class: "btn btn-md btn-primary")%>
         <% if @link.user == current_user %>
         <%= link_to("Edit", edit_link_path(@link) , class: "btn btn-md btn-default")%>
         <%= link_to("Delete", link_path(@link), method: :delete, data: { confirm: "Are you sure?" } , class: "btn btn-md btn-default")%>
@@ -23,6 +23,29 @@
           Downvote
           <%= @link.get_upvotes.size %>
       <% end %>
+    </div>
+
+    <div class="col-md-12">
+      <br /><br />
+      <h4><%= @link.comments.count %> Comments</h4>
+      <hr />
+
+      <% @comments.each do |comment| %>
+      <p><span class="lead"><%= comment.body %></span><br />
+        post by <b><%= comment.user.email %></b>
+      </p>
+      <% end %>
+
+    <% if current_user %>
+      <%= simple_form_for [@link,Comment.new] do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+        <div class="form-actions text-left">
+          <%= f.submit "Add Comment", disable_with: "Submiting...", class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    <% end %>
     </div>
   </div>
 </div>

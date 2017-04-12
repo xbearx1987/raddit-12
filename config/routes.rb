@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'links#index'
 
   resources :links do
+    resources :comments
+
     member do
       post :upvote
       post :downvote
