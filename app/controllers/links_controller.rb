@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+
 
   def index
 
@@ -10,6 +12,7 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(link_params)
+    @link.user = current_user
 
     if @link.save
       redirect_to links_path
