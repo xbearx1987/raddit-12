@@ -31,7 +31,7 @@ class LinksController < ApplicationController
   def update
     @link.update(link_params)
     if @link.save
-      redirect_to links_path
+      redirect_to links_path , notice: "Update Success."
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
-    redirect_to links_path
+    redirect_to links_path , alert: "Link Deleted."
   end
 
 private
@@ -47,7 +47,7 @@ private
     @link = Link.find(params[:id])
 
     if @link.user != current_user
-      redirect_to root_path
+      redirect_to root_path , alert: 'You have no permission.'
     end
   end
 

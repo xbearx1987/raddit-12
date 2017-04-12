@@ -18,8 +18,10 @@
           <tr>
             <td> <%= link_to(link.title ,link_path(link)) %> </td>
             <td> <%= link.url %> </td>
+            <% if link.user == current_user %>
             <td> <%= link_to('Edit', edit_link_path(link), class: "btn btn-default btn-xs") %></td>
             <td> <%= link_to('Delete', link_path(link), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
