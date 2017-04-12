@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <div class="group text-right">
-    <%= link_to("New Link", new_link_path() , class: "btn btn-sm btn-default")%>
+    <%= link_to("Submit a new link", new_link_path() , class: "btn btn-lg btn-default")%>
   </div>
 
   <div class="col-md-12">
@@ -9,7 +9,7 @@
     <p>
       Post by <b><%= link.user.email %></b>
     </p>
-    <%= link_to("Visit Url", link.url , class: "btn btn-md btn-default")%>
+    <%= link_to("Visit Url", link.url, :target=> "_blank" , class: "btn btn-md btn-default")%>
     <%= link_to upvote_link_path(link), method: :post, class: "btn btn-default btn-md-default" do %>
         <span class="glyphicon glyphicon-chevron-up"></span>
         Upvote
